@@ -23,20 +23,22 @@ You can also limit your search, to a list of folders:
 ag 'm\d+\.medium' lib/ test/'
 ```
 
-A regex that the full file path must match:
-
-```{.sh}
-ag 'm\d+\.medium' -G 'ec2.*json'
-```
-
-Or a file type switch:
+A file type switch:
 
 ```{.sh}
 ag 'm\d+\.medium' --json
 ```
 
-A lot of the options available in grep are also available here, you can `-l` to
-only list files, `-v` to do reverse matching, or `-0` to use zero separated
-output.
+Or a regex that the full file path must match:
+
+```{.sh}
+ag 'm\d+\.medium' -G 'ec2.*json'
+```
+
+A lot of the options available in grep are also available here, for example you
+can `-l` to only list files, and `-0` to use zero separated
+output, so it plays nicely piping to xargs:
+
+`ag -l -0 'm\d+\.medium' | xargs -0 sed -i 's/medium/small/g'`
 
 
