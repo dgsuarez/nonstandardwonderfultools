@@ -10,7 +10,7 @@ included here.
 Without further ado, here are the tutorials, enjoy!
 
 * [ag](ag_examples.md)
-* [jq](jq_examples.md)
 * [csvkit](csvkit_examples.md)
+* [jq](jq_examples.md)
 
 
