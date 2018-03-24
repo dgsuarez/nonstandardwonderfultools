@@ -8,7 +8,7 @@ The simplest feature of jq is that since by default it formats and colorizes
 output, it works as a json formatter / highlighter:
 
 ```{.sh}
-jq ec2-describe-instances.json
+cat ec2-describe-instances.json | jq
 ```
 
 But it's so much more. We can provide a jq _program_ (remember to always use
