@@ -5,4 +5,4 @@ SESSIONS=$(EXAMPLES:.md=.sh)
 sessions: $(SESSIONS)
 
 .md.sh:
-	cat $< | codedown '{.sh}' > $@
+	cat $< | sed -n '/^```/,/^```/ p' | sed '/^```/ d' > $@
