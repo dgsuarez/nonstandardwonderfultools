@@ -2,7 +2,7 @@ jq
 ==
 
 [jq](https://stedolan.github.io) is a JSON processor, it uses a small language
-reminescent of sed, awk, and xpath to work with JSON files.
+reminescent of sed, awk, and xpath to work with JSON data.
 
 The simplest feature of jq is that since by default it formats and colorizes
 output, it works as a json formatter / highlighter:
@@ -24,7 +24,7 @@ cat ec2-describe-instances.json | jq '.data.Reservations[0].Instances[0]'
 (For ease of read we'll be using `cat file | jq program`, but you can simplify
 by doing `jq program file`)
 
-One key feature is `[]`, instead of accessing a single index, this will map over every index:
+One key feature is `[]`, instead of accessing a single index, this will map over all of them:
 
 ```{.sh}
 cat ec2-describe-instances.json | jq '.data.Reservations[].Instances[].InstanceType'
@@ -63,4 +63,8 @@ Or, using the next one, you can return an array with the objects inside:
 ```{.sh}
 cat ec2-describe-instances.json | jq '[.data.Reservations[].Instances[] | {InstanceType, Architecture}]'
 ```
+
+EC2 sample JSON taken from [Cloud
+custodian](https://github.com/capitalone/cloud-custodian/blob/c542dfce4881d9c9737e22c1f6e1c1dceb984de0/tests/data/placebo/test_ec2_attached_ebs_filter/ec2.DescribeInstances_1.json).
+
 
