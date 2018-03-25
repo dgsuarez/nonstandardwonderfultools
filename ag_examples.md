@@ -36,3 +36,6 @@ output, so it plays nicely in pipes, for example with xargs + sed:
 ag --js -0 -l Emoji | xargs -0 sed 's/Emoji/Smili/g'
 ```
 
+[Emoji search](https://github.com/ahfarmer/emoji-search) is a project by
+@ahfarmer.
+
