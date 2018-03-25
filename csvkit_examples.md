@@ -13,7 +13,7 @@ first one).
 
 ```{.sh}
 in2csv -n air-pollutant.xlsx
-in2csv --sheet NO2_station_statistics air-pollutant.xlsx
+in2csv --sheet NO2_station_statistics air-pollutant.xlsx | head -n 20
 ```
 
 The file we are using has some explanation data before the actual content,
