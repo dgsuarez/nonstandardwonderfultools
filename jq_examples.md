@@ -21,7 +21,7 @@ cat ec2-describe-instances.json | jq '.status_code'
 cat ec2-describe-instances.json | jq '.data.Reservations[0].Instances[0].Tags'
 ```
 
-(For ease of read we'll be using `cat file | jq program`, but you can simplify
+(For readability we'll be using `cat file | jq program`, but you can simplify
 by doing `jq program file`)
 
 One key feature is `[]`, instead of accessing a single index, this will map over all of them:
