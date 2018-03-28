@@ -22,14 +22,15 @@ use tail for a quick workaround:
 
 ```{.sh}
 in2csv --sheet NO2_station_statistics air-pollutant.xlsx | tail -n +12 > no2-air-pollutant.csv
+head no2-air-pollutant.csv
 ```
 
 Now that we have the data in csv, we can start playing around with it. Using
 `csvcut` we can limit the output to only certain columns, so, if we want to see
-the unique countries and cities in the dataset we can do the following:
+the countries and cities in the dataset we can do the following:
 
 ```{.sh}
-csvcut -c 'country_iso_code,city_name' no2-air-pollutant.csv | tail -n +1 | sort -u
+csvcut -c 'country_iso_code,city_name' no2-air-pollutant.csv | head
 ```
 
 `csvgrep` is a filtering tool, similar to regular grep, but we can specify the
@@ -37,7 +38,15 @@ columns we want to be searched. We can also pipe several of these commands
 together, so for example, to get Spanish cities in the dataset:
 
 ```{.sh}
-csvgrep  -c 'country_iso_code' -m ES no2-air-pollutant.csv | csvcut -c 'city_name'
+csvgrep  -c 'country_iso_code' -m 'ES' no2-air-pollutant.csv
+```
+
+Remember that since we are working on a UNIX shell, we can combine these
+commands together with pipes, for example, to get only the city name for
+Spanish cities:
+
+```{.sh}
+csvgrep  -c 'country_iso_code' -m 'ES' no2-air-pollutant.csv | csvcut -c 'city_name'
 ```
 
 For "heavier" analysis we can actually use SQL. While it can do more than this,

@@ -17,8 +17,8 @@ straightforward ones simply use `.key` and `[index]` to navigate a JSON
 document:
 
 ```{.sh}
-cat ec2-describe-instances.json | jq '.data'
-cat ec2-describe-instances.json | jq '.data.Reservations[0].Instances[0]'
+cat ec2-describe-instances.json | jq '.status_code'
+cat ec2-describe-instances.json | jq '.data.Reservations[0].Instances[0].Tags'
 ```
 
 (For ease of read we'll be using `cat file | jq program`, but you can simplify
@@ -39,6 +39,13 @@ pipe that to the `keys` function.
 
 ```{.sh}
 cat ec2-describe-instances.json | jq '.data.Reservations[0] | keys'
+```
+
+Another builtin is `select`, which searches in the document, for example we can
+get the instance id only for m4.xlarge machines:
+
+```{.sh}
+cat ec2-describe-instances.json | jq '.data.Reservations[].Instances[] | select(.InstanceType == "m4.xlarge") | .InstanceId'
 ```
 
 So far we've seen how to get somewhere in the document, but using jq you can
