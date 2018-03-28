@@ -7,7 +7,7 @@ all: sessions
 sessions: $(SESSIONS)
 
 .md.sh:
-	cat $< | sed -n '/^```/,/^```/ p' | sed -z 's|\\\n *||g' | sed '/^```/ d' > $@
+	cat $< | sed -n '/^```/,/^```/ p' | sed -z 's|\\\n *||g' | sed '/^```/ d' | sed '1s/^/#doitlive speed: 500\n/'  > $@
 
 clean:
-	rm $(SESSIONS)
+	rm -f $(SESSIONS)
