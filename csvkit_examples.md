@@ -34,8 +34,8 @@ csvcut -c 'country_iso_code,city_name' no2-air-pollutant.csv | head
 ```
 
 `csvgrep` is a filtering tool, similar to regular grep, but we can specify the
-columns we want to be searched. We can also pipe several of these commands
-together, so for example, to get Spanish cities in the dataset:
+columns we want to be searched. For example, here is how we can get Spanish
+cities in the dataset:
 
 ```{.sh}
 csvgrep  -c 'country_iso_code' -m 'ES' no2-air-pollutant.csv
@@ -50,8 +50,9 @@ csvgrep  -c 'country_iso_code' -m 'ES' no2-air-pollutant.csv | csvcut -c 'city_n
 ```
 
 For "heavier" analysis we can actually use SQL. While it can do more than this,
-`csvsql` can create an in memory SQLite db that we can query (the name of the
-table comes from the name of the file). The output is in CSV (of course!):
+`csvsql` can create an in memory SQLite db that where it will run the query
+(the name of the table comes from the name of the file). The output is in CSV
+(of course!):
 
 ```{.sh}
 csvsql --query 'SELECT city_name, COUNT(*) FROM "no2-air-pollutant" GROUP BY city_name' no2-air-pollutant.csv
